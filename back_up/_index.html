@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        BBVA - Chatbot
+    </title>
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="assets/static/css/fonts.css">
+
+    <!-- STYLE -->
+    <link rel="stylesheet" href="assets/static/css/plumcss/plumcss.v1.2.3.css">
+    <link rel="stylesheet" href="assets/static/css/app.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+    
+</head>
+<body class="tx-book">
+    <div id="app" class="root-element">
+        
+        <!-- HEADER -->
+        <header  :class="[data.tema == 'light' ? 'main-header-light' : 'main-header-dark']" class="main-header fixed flex align-center t-0 l-0 w-100pr h-17 py-2 shadow-2 z-10">
+            <div class="container container--chatbot">
+                <a href="/">
+                    <img v-if="data.tema == 'light'" class="max-w-30" src="assets/images/layout/logo-blue.svg" alt="">
+                    <img v-else class="max-w-30" src="assets/images/layout/logo-white.svg" alt="">
+                </a>
+            </div>
+        </header>
+       
+       
+        <main class="pt-17">
+            <!-- HOME HERO -->
+            <div style="position: relative;" class="home-hero h-100 grid gridev scroller" :style="{backgroundImage: `url(${data.bg_chat}) !important`}">
+                <div class="coin">
+                    <p class="tx-medium af-title"><img width="50px" style="padding:0 4px; vertical-align: sub;" class="max-w-20" src="assets/images/coin.png" />{{arbol.porcentaje}}</p>
+                </div>
+                <div class="container container--chatbot">
+
+                    <p class="tx-center w-100pr mt-5 z-index-1 tx-medium af-title">{{data.titulo}}</p>
+                    <div class="gs:grid align-center in-a">
+                        <div :class="{'col-24': arbol.final == 1}" class="col-12 tx-center">
+                            <div v-for="item in arbol.elementos">
+                                <div data-aos="" data-aos-delay="50"
+                                data-aos-duration="800" class="fadeInDownLeft" v-if="item.tipo == 'texto'"> 
+                                    <p class="bg-globo-bbva"><b>{{item.contenido}}</b><br>
+                                        <a v-if="arbol.final == 1" class="tx-medium" :href="item.src" target="_blank">{{item.src}}</a>
+                                    </p>
+                                </div>
+                                <div data-aos="" data-aos-delay="200"
+                                data-aos-duration="800" class="fadeInDownLeft" v-if="item.tipo == 'img'">
+                                    <img class="bg-globo-bbva img" :src="item.src" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offset-12 col-12 tx-center cliente-response">
+                            <div  data-aos="" data-aos-delay="300"
+                            data-aos-duration="800" class="bg-globo-client fadeInDownRight" v-for="item in arbol.opciones">  
+                                <button class="btn btn-destion" v-on:click="getReloadArbol(item.nodo), metrica('Arbol', item.contenido, arbol.porcentaje)">
+                                    {{item.contenido}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <!-- HOME ICONS -->
+            <div class="container container--chatbot">
+                <div class="home-icons grid justify-center py-18 px-8 md:px-20 lg:px-0">
+                    <img :src="'assets/images/views/home/icon-'+ img +'.jpg'" alt="" v-for="(img, idx) in 6">
+                </div>
+            </div>
+
+            <!-- INFO 1 -->
+            <div class="bg-primary-1 py-18">
+                <div class="container container--chatbot">
+                    <div class="gs:grid align-center">
+                        <div class="lg:col-14 mb-10 lg:mb-0">
+                            <p class="tx-38 md:tx-44 tx-white mb-8">
+                                {{data.secciones[0].titulo}}
+                            </p>
+                            <p class="tx-20 md:tx-24 tx-secondary-1 tx-medium mb-8">
+                                {{data.secciones[0].subtitulo}}
+                            </p>
+                            <p class="tx-20 md:tx-24 tx-white tx-medium mb-0">
+                                {{data.secciones[0].accion}}
+                            </p>
+                        </div>
+                        <div class="lg:col-10">
+                            <a class="btn btn--primary-3 flex mx-auto lg:mr-0" v-on:click="metrica('INFO 1', data.secciones[0].btn_copy, 'Enlace')"   :href="data.secciones[0].enlace" target="_blank">
+                                {{data.secciones[0].btn_copy}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- INFO 2 -->
+            <div class="bg-secondary-2 py-18">
+                <div class="container container--chatbot">
+                    <div class="gs:grid align-center">
+                        <div class="lg:col-14 mb-10 lg:mb-0">
+                            <p class="tx-38 md:tx-44 tx-primary-1 mb-8">
+                                {{data.secciones[1].titulo}}
+                            </p>
+                            <span v-html="data.secciones[1].subtitulo"></span>
+
+                            <p class="tx-20 md:tx-24 tx-secondary-1 tx-medium mb-0">
+                                {{data.secciones[1].accion}}
+                            </p>
+                        </div>
+                        <div class="lg:col-10">
+                            <a v-on:click="metrica('INFO 2', data.secciones[1].btn_copy, 'Enlace')" class="btn btn--secondary-1 flex mx-auto lg:mr-0" :href="data.secciones[1].enlace" target="_blank">
+                                {{data.secciones[1].btn_copy}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAW -->
+            <div class="container container--chatbot py-18">
+                <div class="law-dropdown">
+                    <div class="flex justify-between align-center cursor-pointer">
+                        <span class="tx-24 tx-medium tx-secondary-1">
+                            Legales
+                        </span>
+                        <img class="max-w-7" src="assets/images/helpers/icon-plus.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="main-footer bg-primary-1 py-15">
+            <div class="container container--chatbot">
+                <div class="flex flex-column md:flex-row mb-13">
+                    <div class="mb-8">
+                        <a class="block mb-10 md:mb-15" href="/">
+                            <img class="max-w-30 md:max-w-37" src="assets/images/layout/logo-white.svg" alt="">
+                        </a>
+                        <div class="tx-primary-3 tx-medium flex">
+                            <a class="tx-hover" href="https://www.bbva.mx/personas/aviso-legal.html" target="_blank">Aviso legal</a>
+                            <a class="tx-hover block mx-4 xl:mx-10" href="https://www.bbva.mx/personas/mapa-del-sitio.html" target="_blank">Mapa del Sitio</a>
+                            <a class="tx-hover" href="https://www.bbva.mx/personas/aviso-de-privacidad.html" target="_blank">Aviso de privacidad</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-column md:align-end md:ml-auto">
+                        <!-- SOCIAL MEDIA -->
+                        <div class="flex mb-8 md:mb-15">
+                            <a class="social-media-case" href="https://www.facebook.com/bbvaenmexico/?1" target="_blank">
+                                <img src="assets/images/helpers/social_media/icon-fbk-circle.svg" alt="">
+                            </a>
+                            <a class="social-media-case" href="https://twitter.com/BBVA_Mex/?1" target="_blank">
+                                <img src="assets/images/helpers/social_media/icon-twitter.svg" alt="">
+                            </a>
+                            <a class="social-media-case" href="https://www.instagram.com/bbva_mex/?1" target="_blank">
+                                <img src="assets/images/helpers/social_media/icon-ig.svg" alt="">
+                            </a>
+                            <a class="social-media-case" href="https://www.linkedin.com/company/bbva-mexico/" target="_blank">
+                                <img class="max-w-5" src="assets/images/helpers/social_media/icon-linkedin.svg" alt="">
+                            </a>
+                            <a class="social-media-case" href="https://www.youtube.com/user/bbvabancomer" target="_blank">
+                                <img class="max-w-6" src="assets/images/helpers/social_media/icon-youtube.svg" alt="">
+                            </a>
+                        </div>
+
+                        <a href="https://www.bbva.mx/content/dam/public-web/mexico/documents/tarifario-general/Tarifario.pdf" target="_blank" class="tx-hover tx-primary-3 tx-medium flex md:tx-right cursor-pointer" >
+                            Consulta los costos y las comisiones de <br>
+                            nuestros productos
+                        </a>
+                    </div>
+                </div>
+                <div class="flex flex-column md:flex-row">
+                    <p class="copy tx-12 tx-white md:m-0">
+                        © 2022 BBVA México, S.A., Institución de Banca Múltiple, Grupo Financiero BBVA México. Avenida Paseo de la Reforma 510, colonia Juárez, código <br class="hidden xl:block"> postal 06600, alcaldía Cuauhtémoc, Ciudad de México.
+                    </p>
+                    <span class="tx-secondary-1 tx-medium block md:ml-auto">
+                        Creando Oportunidades
+                    </span>
+                </div>
+            </div>
+        </footer> 
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./data.js"></script>
+    <script src="assets/static/js/app.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>
+        BBVA - Chatbot
+    </title>
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="assets/static/css/fonts.css">
+
+    <!-- STYLE -->
+    <link rel="stylesheet" href="assets/static/css/plumcss/plumcss.v1.2.3.css">
+    <link rel="stylesheet" href="assets/static/css/app.css">
+
+    <!-- ANIMATE -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="./iframe-resizer-contentwindow.min.js"></script>
+</head>
+<body class="tx-book">
+    <div id="app" class="root-element">
+        <div class="container-img-modal" v-if="modal">
+            <div class="container-img-modal-window">
+                <div class="container-img-modal-head">
+                    <div>
+                        <p class="tx-subitular">Descargar infografía</p>
+                    </div>
+                    <div>
+                        <button class="btn-modal-close" v-on:click="closeModal">X</button>
+                    </div>
+                </div>
+                <div class="div-img-modal">
+                    <img id="img-modal" :src="imgModalSrc" alt="">
+                </div>
+                <div class="div-img-modal-options">
+                    <div>
+                        <button class="btn--primary-3" v-on:click="downloadFile">
+                            Descargar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <!-- HOME HERO -->
+            <div id="content-chat" style="position: relative; background-position-y: bottom;" class="home-hero grid justify-content-center" :style="{backgroundImage: `url(${data.bg_chat}) !important`}">  <!-- gridev -->
+                <div class="container-marque">
+                    <div class="container-title--chatbot">
+                        <p class="tx-center w-100pr z-index-1 tx-medium af-title title-m">{{data.titulo}}</p>
+                        <div class="coin">
+                            <div>
+                                <p class="tx-medium af-title">
+                                    <img width="50px" style="padding:0 4px; vertical-align: sub;" class="max-w-20" src="assets/images/coin.png" />
+                                    <span id="number_coin">{{ coin }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container container--chatbot">
+                        <div class="container-box-chat">
+                            <div class="box-chat">
+                                <div class="container-cam hide-mobile">
+                                    <div class="div-cam">
+                                        <div class="container-lente">
+                                            <div class="div-lente">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-mobile">
+                                    <div class="container-messages scroller">
+                                        <transition-group name="bounce" appear>
+                                            <div v-for="(item, i) in mensajes" :key="i" ><!-- </div>:style="{ transitionDelay: (i*2) + '000ms' }"> -->
+                                                <!-- Opciones -->
+                                                <div v-if="item.opciones">
+                                                    <div v-for="o in item.opciones">
+                                                        <div class="container-globe-user" v-if="o.tipo == 'text' || o.tipo == 'button' || (o.tipo == 'stars' && o.contenido == '1')">
+                                                            <div class="globe-user">
+                                                                <div :id="o.id" class="globe-user-message">
+                                                                    <div v-if="o.tipo == 'text'">
+                                                                        <p class="text-option-btn"><b>{{o.contenido}}</b></p>
+                                                                    </div>
+                                                                    <div v-if="o.tipo == 'button'">
+                                                                        <!-- <button class="btn btn-destion" v-on:click="getReloadArbol(o.nodo), metrica('Arbol', o.contenido, arbol.porcentaje)"> -->
+                                                                        <button class="btn btn-destion" v-on:click="validateReloadArbol(o.nodo,o.add_text,o.contenido), validateScore(o.puntuaciones), blockedButtons(), updateCoin(o.nodo), validarEstiloRespuesta(o.id,o.correcto)">
+                                                                            {{o.contenido}}
+                                                                        </button>
+                                                                    </div>
+                                                                    <div v-if="o.tipo == 'stars'">
+                                                                        <div v-if="o.contenido == '1'">
+                                                                            <div class="container-options-stars">
+                                                                                <div class="option-star">
+                                                                                    <button class="btn-star" v-on:click="changeStar(1)">
+                                                                                        <img class="img-btn-star star-1" :src="srcStar1" alt="">
+                                                                                    </button>
+                                                                                    <button class="btn-star" v-on:click="changeStar(2)">
+                                                                                        <img class="img-btn-star star-2" :src="srcStar2" alt="">
+                                                                                    </button>
+                                                                                    <button class="btn-star" v-on:click="changeStar(3)">
+                                                                                        <img class="img-btn-star star-3" :src="srcStar3" alt="">
+                                                                                    </button>
+                                                                                    <button class="btn-star" v-on:click="changeStar(4)">
+                                                                                        <img class="img-btn-star star-4" :src="srcStar4" alt="">
+                                                                                    </button>
+                                                                                    <button class="btn-star" v-on:click="changeStar(5)">
+                                                                                        <img class="img-btn-star star-5" :src="srcStar5" alt="">
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="option-next">
+                                                                                    <button v-on:click="validateReloadArbol(o.nodo,2,'stars'), validateScore(o.puntuaciones)">
+                                                                                        Sigamos
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flag-option flag-right">
+                                                                    <div class="arrow-down-user"></div>
+                                                                    <div class="arrow-down-user2"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="container-globe-user" v-if="o.add_text == 1 && showAddText">
+                                                            <div class="globe-user">
+                                                                <div class="globe-user-message text-center w-80">
+                                                                    <div>
+                                                                        <input type="text" class="input-text-add" v-model="otro">
+                                                                        <button class="btn-add-text" v-on:click="validateReloadArbol(o.nodo,3,'otra')"> <!-- metrica('Otra', '', 'Click', item.id) -->
+                                                                            Continuar
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Elementos -->
+                                                <div v-else>
+                                                    <div class="container-globe-bot">
+                                                        <div class="globe-bot" v-if="item.tipo != 'timeout' && item.tipo != 'info'">
+                                                            <div class="globe-bot-message">
+                                                                <div class="my-2" v-if="item.tipo == 'texto'"> 
+                                                                    <b>{{item.contenido}}</b>
+                                                                </div>
+                                                                <div class="my-2" v-if="item.tipo == 'texto-b'"> 
+                                                                    <p class="text-weight"><b>{{item.contenido}}</b></p>
+                                                                </div>
+                                                                <div class="text-center img-bot my-2" v-if="item.tipo == 'img'">
+                                                                    <button type="button" v-on:click="showModal(item.src)" data-bs-toggle="modal" data-bs-target="#modalImg">
+                                                                        <img class="img" :src="item.src" alt="">
+                                                                    </button>                                                                
+                                                                </div>
+                                                                <div class="my-2" v-if="item.tipo == 'link'">
+                                                                    <u><a :href="item.src" target="_blank" v-on:click="openLink(item.src)">{{item.contenido}}</a></u>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flag-option">
+                                                                <div class="arrow-down"></div>
+                                                                <div class="arrow-down-white"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="globe-bot" v-if="item.tipo == 'info'">
+                                                            <div class="globe-bot-info">
+                                                                <p><i><b>{{item.contenido}}</b></i></p>
+                                                            </div>                                                        
+                                                        </div>
+                                                    </div>                                                
+                                                </div>
+                                            </div>
+                                        </transition-group>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-power hide-mobile">
+                                <div class="div-power"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+            <!-- HOME ICONS -->
+            <!-- <div class="container container--chatbot">
+                <div class="home-icons grid justify-center py-18 px-8 md:px-20 lg:px-0">
+                    <img :src="'assets/images/views/home/icon-'+ img +'.jpg'" alt="" v-for="(img, idx) in 6">
+                </div>
+            </div> -->
+
+            <!-- INFO 1 -->
+            <div class="bg-primary-1">
+                <div class="container container--chatbot" style="position: absolute; padding: 0;">
+                    <div class="container--chatbot-section">
+                        <div class="gs:grid align-center">
+                            <div class="lg:col-14 mb-10 lg:mb-0">
+                                <p class="tx-titular md:tx-44 tx-white mb-8">
+                                    {{data.secciones[0].titulo}}
+                                </p>
+                                <p class="tx-subitular md:tx-24 tx-secondary-1 mb-8">
+                                    {{data.secciones[0].subtitulo}}
+                                </p>
+                                <p class="tx-bodycopy md:tx-24 tx-white mb-0">
+                                    {{data.secciones[0].accion}}
+                                </p>
+                            </div>
+                            <div class="lg:col-10 justify-content-center">
+                                <div>
+                                    <a class="btn--primary-3 flex mx-auto lg:mr-0 tx-bodycopy" v-on:click="metrica('INFO 1', data.secciones[0].btn_copy, 'Enlace', 0)"   :href="data.secciones[0].enlace" target="_blank">
+                                        {{data.secciones[0].btn_copy}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- INFO 2 -->
+            <div class="bg-secondary-2">
+                <div class="container container--chatbot" style="position: absolute; padding: 0;">
+                    <div class="container--chatbot-section">
+                        <div class="gs:grid align-center">
+                            <div class="lg:col-14 mb-10 lg:mb-0">
+                                <p class="tx-titular md:tx-44 tx-primary-1 mb-8">
+                                    {{data.secciones[1].titulo}}
+                                </p>
+                                <span class="tx-bodycopy" v-html="data.secciones[1].subtitulo"></span>
+
+                                <!-- <p class="tx-20 md:tx-24 tx-secondary-1 tx-medium mb-0">
+                                    {{data.secciones[1].accion}}
+                                </p> -->
+                            </div>
+                            <div class="lg:col-10 justify-content-center">
+                                <div>
+                                    <a v-on:click="metrica('INFO 2', data.secciones[1].btn_copy, 'Enlace', 0)" class="btn--secondary-1 flex mx-auto lg:mr-0 tx-bodycopy" :href="data.secciones[1].enlace" target="_blank">
+                                        {{data.secciones[1].btn_copy}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-cookies@1.8.1/vue-cookies.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./data.js"></script>
+    <script src="assets/static/js/app.js"></script>
+    <script src="assets/static/js/iframe.js"></script>
+</body>
+</html>

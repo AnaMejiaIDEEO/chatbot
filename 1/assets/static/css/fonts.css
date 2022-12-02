@@ -1,0 +1,25 @@
+@font-face {
+    font-family: "BS-BBVA book";
+    src: url("./fonts/bentons_sans_bbva/BentonSansBBVA-Book.eot") format("eot"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Book.ttf") format("ttf"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Book.woff") format("woff"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Book.woff2") format("woff2"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Book.woff2") format("woff2");
+}
+  
+@font-face {
+    font-family: "BS-BBVA medium";
+    src: url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Medium.eot") format("eot"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Medium.ttf") format("ttf"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Medium.woff") format("woff"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Medium.woff2") format("woff2");
+}
+  
+@font-face {
+    font-family: "BS-BBVA bold";
+    src: url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Bold.eot") format("eot"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Bold.ttf") format("ttf"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Bold.woff") format("woff"),
+    url("../../fonts/bentons_sans_bbva/BentonSansBBVA-Bold.woff2") format("woff2");
+}
+  

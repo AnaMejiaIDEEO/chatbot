@@ -1,0 +1,441 @@
+body{ color: #121212; }
+
+.container--chatbot{ max-width: 100%; }
+
+@media screen and (min-width: 768px) {
+    .container--chatbot{ max-width: 93%; }
+}
+
+@media screen and (min-width: 1280px) {
+    .container--chatbot{ max-width: 78%; }
+}
+
+@media screen and (min-width: 1580px) {
+    .container--chatbot{ max-width: 68%; }
+}
+
+/* UTILITIES */
+.tx-white{ color: #fff;}
+
+.tx-black{ color: #000;}
+
+.tx-book{ font-family: 'BS-BBVA book', sans-serif;}
+.tx-medium{ font-family: 'BS-BBVA medium', sans-serif;}
+.tx-bold{ font-family: 'BS-BBVA bold', sans-serif;}
+
+.bg-primary-1{ background-color: #072146; }
+.bg-secondary-2 { background-color: #DCFAFA; }
+
+.tx-primary-1{ color: #072146; }
+.tx-primary-3{ color: #00A9EC; }
+.tx-secondary-1{ color: #01D0D2; }
+.tx-lightblue{ color: #01D0D2; }
+
+.tx-hover:hover{ color: #fff; transition: all 100ms ease; }
+
+/* BUTTONS */
+.btn{
+    border-radius: 0;
+    color: #fff;
+    height: 72px;
+    width: 100%;
+    max-width: 300px;
+    font-family: 'BS-BBVA medium', sans-serif;
+    font-size: 22px;
+}
+
+@media screen and (min-width: 768px) {
+    .btn{ 
+        height: 88px;
+        max-width: 360px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .btn{ 
+        height: 100px;
+        max-width: 432px;
+    }
+}
+
+.btn:hover{
+    transform: translateY(-5px);
+    box-shadow: none;
+}
+
+.btn--primary-3{
+    background-color: #00A9EC;
+    border-color: #00A9EC;
+}
+
+.btn--secondary-1{
+    background-color: #01D0D2;
+    border-color: #01D0D2;
+}
+
+/* HEADER */
+.main-header-light{ 
+    background-color: #fff; 
+}
+
+.main-header-dark{ 
+    background-color: #072146; 
+}
+
+.home-icons{
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (min-width: 768px) {
+    .home-icons{ grid-template-columns: repeat(3, 1fr); }
+}
+
+@media screen and (min-width: 1280px) {
+    .home-icons{ grid-template-columns: repeat(6, 1fr); }
+}
+
+/* FOOTER */
+.social-media-case {
+    height: 36px;
+    width: 36px;
+    background-color: #00A9EC;
+    transition: all .2s;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.social-media-case:last-child{ margin-right: 0; }
+.social-media-case:first-child{ margin-left: 0; }
+
+.social-media-case:hover{ background-color: #fff; }
+
+.copy{ color: #bdbdbd; }
+
+
+.z-index-1{
+    z-index: 1;
+    position: relative;
+}
+
+.gridev{
+    background-size: cover !important;
+    outline: initial !important;
+}
+
+.af-title{
+    font-size: 2em;
+}
+@media (max-width: 576px) {
+  .title-m{
+    margin-top: 60px;
+  }
+}
+
+.bg-globo-bbva{
+    background: #fff;
+    background: url('../../images/bbva.png');
+    background-size: 100% 100%;
+    color: #072146;
+    padding: 18px 20px 40px 20px; /* 30px 40px 60px 40px; */
+    width: 50%;
+    margin: 10px auto;
+    max-width: 200px;
+    font-size: 14px; /**/
+}
+
+.bg-globo-client{
+    background: #01D0D2;
+    background: url('../../images/usuario.png');
+    background-size: 100% 100%;
+    color: #072146;
+    padding: 15px 20px 40px 20px; /* 30px 40px 60px 40px; */
+    width: 50%;
+    margin: 0 auto;
+}
+
+.bg-globo-text{
+  width: 40%!important;
+}
+
+.btn-add-text{
+  margin-bottom: 20px;
+}
+
+.btn-destion{
+    background: transparent;
+    border: 0;
+    font-family: 'BS-BBVA medium', sans-serif;
+    font-size: 14px; /*16px;*/
+    height: 50px;
+    color: #072146;
+}
+
+.text-option-btn{
+  background-size: 100% 100%;
+  color: #072146;
+  padding: 15px 0px; /* 30px 40px 60px 40px; */
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.input-text-add{
+  margin: 15px 0px 5px 0px;
+}
+
+.img{
+    width: 45%;
+}
+
+.h-100{
+    height: 40rem;
+}
+
+ul{
+    color: #072146;
+    list-style: disc;
+    padding: 0;
+    font-size: 1.5rem;
+    font-family: 'BS-BBVA medium', sans-serif;
+}
+
+.in-a{
+    height: 100%;
+}
+
+.scroller{
+    overflow-x: auto;
+}
+
+
+.coin{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+.fade-enter-active, .fade-leave-active {
+    transition-property: opacity;
+    transition-duration: .25s;
+  }
+  
+  .fade-enter-active {
+    transition-delay: .25s;
+  }
+  
+  .fade-enter, .fade-leave-active {
+    opacity: 0
+  }
+
+  @media screen and (max-width: 992px) {
+    .bg-globo-bbva{
+        width: 100%;
+    }
+    
+    .bg-globo-client{
+        width: 100%;
+    }
+}
+
+
+
+/* ANIMATIONS */
+
+/* Simple CSS3 Fade-in-down Animation */
+
+.fadeInDownLeft {
+  -webkit-animation-name: fadeInDownLeft;
+  animation-name: fadeInDownLeft;
+  -webkit-animation-duration: 1.2s;
+  animation-duration: 1.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDownLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 10%);
+    transform: translate3d(0, -100%, 10%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDownLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-10%, -100%, 0);
+    transform: translate3d(-10%, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInDownLeft.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.fadeInDownLeft.second {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.fadeInDownLeft.third {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.fadeInDownLeft.fourth {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+
+.fadeInDownRight {
+  -webkit-animation-name: fadeInDownRightKey;
+  animation-name: fadeInDownRightKey;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDownRightKey {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(10%, -100%, 0);
+    transform: translate3d(10%, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDownRightKey {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(10%, -100%, 0);
+    transform: translate3d(10%, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fadeIn {
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+}
+
+.fadeIn.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.fadeIn.second {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.fadeIn.third {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.fadeIn.fourth {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+
+
+
+.bounce-enter{
+  opacity: 0;
+}
+
+.bounce-list-move {
+  /* transition: transform .5s; */
+  opacity: 0;
+}
+.bounce-enter-active {
+  animation: bounce-in 1s;
+  /*transition: opacity 150ms;*/
+}
+.bounce-leave,
+.bounce-leave-to,
+.bounce-leave-active {
+  /* animation: bounce-in .5s reverse;*/
+  /* animation: bounce-out .5s;
+  transition: opacity 150ms;  */
+  opacity: 0;
+  /* transform: translateY(0px); */
+}
+@keyframes bounce-in {
+0% {
+  transform: scale(0);
+}
+50% {
+  transform: scale(1.5);
+}
+100% {
+  transform: scale(1);
+}
+}
+@keyframes bounce-out {
+0% {
+  transform: scale(0);
+}
+}
+.chat {
+  display: flex;
+  flex-direction: column-reverse;
+  /* height: 12rem; */
+  overflow: hidden;
+  /* border: 1px #ccc dashed; */
+  font: .85rem/1.5 Arial;
+  color: #313131;
+  position: relative;
+}
